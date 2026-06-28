@@ -8,6 +8,28 @@
 </head>
 <body>
 
+<!-- ══ PIN ════════════════════════════════════════════════════ -->
+<div id="pin-screen" class="hidden">
+  <div class="pin-container">
+    <div class="login-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 168">
+        <path d="M84 0C37.7 0 0 37.7 0 84s37.7 84 84 84 84-37.7 84-84S130.3 0 84 0zm38.6 121.2c-1.5 2.5-4.8 3.3-7.3 1.8-20-12.2-45.2-15-74.9-8.2-2.9.7-5.7-1.1-6.4-4-.7-2.9 1.1-5.7 4-6.4 32.5-7.4 60.4-4.2 82.9 9.5 2.5 1.5 3.3 4.8 1.7 7.3zm10.3-22.9c-1.9 3.1-6 4.1-9.1 2.2-22.9-14.1-57.8-18.1-84.9-9.9-3.5 1.1-7.2-1-8.2-4.4-1.1-3.5 1-7.2 4.4-8.2 30.9-9.4 69.3-4.8 95.6 11.2 3.1 1.9 4.1 6 2.2 9.1zm.9-23.8c-27.4-16.3-72.7-17.8-98.9-9.8-4.2 1.3-8.6-1.1-9.8-5.2-1.3-4.2 1.1-8.6 5.2-9.8 30-9.1 79.8-7.4 111.3 11.3 3.8 2.2 5 7.1 2.7 10.9-2.2 3.7-7.1 5-10.9 2.7l.4-.1z"/>
+      </svg>
+      <h1>MySpotify</h1>
+    </div>
+    <p class="pin-label">Entrez le code d'accès</p>
+    <div class="pin-input-row" id="pin-error-target">
+      <input type="password" id="pin-input" maxlength="20"
+             placeholder="••••••••••" autocomplete="off"
+             inputmode="numeric">
+      <button id="pin-submit">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+    </div>
+    <p id="pin-error" class="pin-error hidden">Code incorrect</p>
+  </div>
+</div>
+
 <!-- ══ LOGIN ══════════════════════════════════════════════════ -->
 <div id="login-screen">
   <div class="login-container">

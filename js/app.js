@@ -24,8 +24,38 @@ const App = {
   _isSeeking: false,
   _currentDuration: 0,
 
+  // ── PIN ───────────────────────────────────────────────────────
+  _initPin() {
+    const submit = () => {
+      const val = $('pin-input').value;
+      if (val === '0611830284') {
+        sessionStorage.setItem('pin_ok', '1');
+        $('pin-screen').classList.add('hidden');
+        this.init();
+      } else {
+        const row = $('pin-error-target');
+        $('pin-error').classList.remove('hidden');
+        row.classList.remove('shake');
+        void row.offsetWidth;
+        row.classList.add('shake');
+        $('pin-input').value = '';
+        setTimeout(() => row.classList.remove('shake'), 400);
+      }
+    };
+    $('pin-submit').onclick = submit;
+    $('pin-input').onkeydown = (e) => { if (e.key === 'Enter') submit(); };
+    $('pin-input').focus();
+  },
+
   // ── Init ──────────────────────────────────────────────────────
   async init() {
+    if (!sessionStorage.getItem('pin_ok')) {
+      $('pin-screen').classList.remove('hidden');
+      this._initPin();
+      return;
+    }
+    $('pin-screen').classList.add('hidden');
+
     if (CONFIG.CLIENT_ID === 'YOUR_CLIENT_ID_HERE') {
       this._showSetupMessage();
       return;
