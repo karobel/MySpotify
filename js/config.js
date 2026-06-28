@@ -22,7 +22,7 @@ const CONFIG = {
   // L'URL de cette page (détectée automatiquement)
   // Si ça ne marche pas, remplace 'auto' par l'URL exacte, ex:
   // 'http://localhost:8080' ou 'https://username.github.io/MySpotify/'
-  REDIRECT_URI: 'auto',
+  REDIRECT_URI: 'https://karobel.github.io/MySpotify/',
 
   SCOPES: [
     'streaming',

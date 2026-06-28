@@ -519,6 +519,7 @@ const App = {
     $('login-screen').classList.remove('hidden');
     $('app-screen').classList.add('hidden');
     $('player-bar').classList.add('hidden');
+    $('login-btn').onclick = () => Auth.login();
   },
 
   _showApp() {
