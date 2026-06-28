@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MySpotify</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ══ LOGIN ══════════════════════════════════════════════════ -->
+<div id="login-screen">
+  <div class="login-container">
+    <div class="login-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 168">
+        <path d="M84 0C37.7 0 0 37.7 0 84s37.7 84 84 84 84-37.7 84-84S130.3 0 84 0zm38.6 121.2c-1.5 2.5-4.8 3.3-7.3 1.8-20-12.2-45.2-15-74.9-8.2-2.9.7-5.7-1.1-6.4-4-.7-2.9 1.1-5.7 4-6.4 32.5-7.4 60.4-4.2 82.9 9.5 2.5 1.5 3.3 4.8 1.7 7.3zm10.3-22.9c-1.9 3.1-6 4.1-9.1 2.2-22.9-14.1-57.8-18.1-84.9-9.9-3.5 1.1-7.2-1-8.2-4.4-1.1-3.5 1-7.2 4.4-8.2 30.9-9.4 69.3-4.8 95.6 11.2 3.1 1.9 4.1 6 2.2 9.1zm.9-23.8c-27.4-16.3-72.7-17.8-98.9-9.8-4.2 1.3-8.6-1.1-9.8-5.2-1.3-4.2 1.1-8.6 5.2-9.8 30-9.1 79.8-7.4 111.3 11.3 3.8 2.2 5 7.1 2.7 10.9-2.2 3.7-7.1 5-10.9 2.7l.4-.1z"/>
+      </svg>
+      <h1>MySpotify</h1>
+      <p>Votre lecteur Spotify personnel</p>
+    </div>
+    <button id="login-btn" class="btn-login">
+      Se connecter avec Spotify
+    </button>
+  </div>
+</div>
+
+<!-- ══ APP ════════════════════════════════════════════════════ -->
+<div id="app-screen" class="hidden">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="sidebar-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 168">
+          <path d="M84 0C37.7 0 0 37.7 0 84s37.7 84 84 84 84-37.7 84-84S130.3 0 84 0zm38.6 121.2c-1.5 2.5-4.8 3.3-7.3 1.8-20-12.2-45.2-15-74.9-8.2-2.9.7-5.7-1.1-6.4-4-.7-2.9 1.1-5.7 4-6.4 32.5-7.4 60.4-4.2 82.9 9.5 2.5 1.5 3.3 4.8 1.7 7.3zm10.3-22.9c-1.9 3.1-6 4.1-9.1 2.2-22.9-14.1-57.8-18.1-84.9-9.9-3.5 1.1-7.2-1-8.2-4.4-1.1-3.5 1-7.2 4.4-8.2 30.9-9.4 69.3-4.8 95.6 11.2 3.1 1.9 4.1 6 2.2 9.1zm.9-23.8c-27.4-16.3-72.7-17.8-98.9-9.8-4.2 1.3-8.6-1.1-9.8-5.2-1.3-4.2 1.1-8.6 5.2-9.8 30-9.1 79.8-7.4 111.3 11.3 3.8 2.2 5 7.1 2.7 10.9-2.2 3.7-7.1 5-10.9 2.7l.4-.1z"/>
+        </svg>
+        <span>MySpotify</span>
+      </div>
+
+      <ul class="nav-list">
+        <li class="nav-item active" data-view="home">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          Accueil
+        </li>
+        <li class="nav-item" data-view="search">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          Rechercher
+        </li>
+      </ul>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="library-section">
+      <div class="library-header">Ma bibliothèque</div>
+      <div id="sidebar-playlists"></div>
+    </div>
+
+    <div class="sidebar-footer">
+      <div id="user-info">
+        <span id="user-name"></span>
+        <button id="logout-btn">Déconnexion</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- Home -->
+    <div id="view-home" class="view"></div>
+
+    <!-- Search -->
+    <div id="view-search" class="view hidden">
+      <div class="search-container">
+        <div class="search-input-wrapper">
+          <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          <input type="text" id="search-input" placeholder="Artistes, titres, podcasts...">
+        </div>
+        <div id="search-results"></div>
+      </div>
+    </div>
+
+    <!-- Playlist / Liked Songs -->
+    <div id="view-playlist" class="view hidden"></div>
+
+  </main>
+</div>
+
+<!-- ══ PLAYER BAR ═════════════════════════════════════════════ -->
+<div id="player-bar" class="hidden">
+
+  <!-- Now Playing -->
+  <div class="now-playing hidden" id="np-block">
+    <img id="np-art" src="" alt="">
+    <div class="np-info">
+      <div id="np-name">—</div>
+      <div id="np-artist">—</div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="playback-controls">
+    <div class="ctrl-buttons">
+
+      <button class="ctrl-btn" id="btn-shuffle" title="Aléatoire">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/>
+        </svg>
+      </button>
+
+      <button class="ctrl-btn" id="btn-prev" title="Précédent">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
+      </button>
+
+      <button class="ctrl-btn ctrl-btn-play" id="btn-play" title="Play / Pause">
+        <svg id="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <svg id="icon-pause" viewBox="0 0 24 24" fill="currentColor" class="hidden"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+      </button>
+
+      <button class="ctrl-btn" id="btn-next" title="Suivant">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+      </button>
+
+      <button class="ctrl-btn" id="btn-repeat" title="Répéter">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/>
+        </svg>
+      </button>
+
+    </div>
+
+    <div class="progress-row">
+      <span id="time-current" class="time">0:00</span>
+      <div id="progress-bar">
+        <div id="progress-fill"></div>
+      </div>
+      <span id="time-total" class="time">0:00</span>
+    </div>
+  </div>
+
+  <!-- Volume -->
+  <div class="volume-controls">
+    <button class="vol-btn" title="Volume">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+      </svg>
+    </button>
+    <input type="range" id="vol-slider" min="0" max="100" value="50">
+  </div>
+
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/api.js"></script>
+<script src="js/player.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
